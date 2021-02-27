@@ -27,9 +27,34 @@ class Dock extends StatelessWidget {
             ],
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              for (int i = 0; i < 6; i++) NormalAppIcon(),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppIcon(),
+                    AppIcon(),
+                    AppIcon(),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Container(
+                  color: Colors.grey.withOpacity(0.25),
+                  width: 2,
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppIcon(),
+                    AppIcon(),
+                    AppIcon(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

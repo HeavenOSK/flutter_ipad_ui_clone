@@ -17,7 +17,7 @@ class AppCollectionLayer extends StatelessWidget {
           for (int i = 0; i < 6; i++)
             Column(
               children: const [
-                NormalAppIcon(),
+                AppIcon(),
                 SizedBox(height: 4),
                 Text(
                   'example',
