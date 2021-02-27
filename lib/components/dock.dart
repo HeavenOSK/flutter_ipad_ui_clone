@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ipad_ui/components/normal_app_icon.dart';
+import 'package:ipad_ui/components/app_icon.dart';
 
 class Dock extends StatelessWidget {
   const Dock({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class Dock extends StatelessWidget {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: const [
                     AppIcon(),
                     AppIcon(),
                     AppIcon(),
@@ -48,7 +48,7 @@ class Dock extends StatelessWidget {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: const [
                     AppIcon(),
                     AppIcon(),
                     AppIcon(),

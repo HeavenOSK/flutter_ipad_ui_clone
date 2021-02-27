@@ -49,31 +49,26 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
     return GestureDetector(
       onTap: widget.onTap,
       onLongPress: widget.onLongPress,
-      onTapDown: (_) {
+      onTapDown: (_) async {
         setState(() {
           _phase = _Phase.pressing;
         });
-        Future<void>.delayed(
-          const Duration(milliseconds: 350),
-          () {
-            if (!_phase.pressing) {
-              return;
-            }
-            setState(() {
-              _phase = _Phase.longPressing;
-            });
-            Future<void>.delayed(
-              const Duration(milliseconds: 200),
-              () {
-                if (_phase.longPressing) {
-                  setState(() {
-                    _phase = _Phase.longPressed;
-                  });
-                }
-              },
-            );
-          },
-        );
+        await Future<void>.delayed(const Duration(milliseconds: 350));
+
+        if (!_phase.pressing) {
+          return;
+        }
+        setState(() {
+          _phase = _Phase.longPressing;
+        });
+        await Future<void>.delayed(const Duration(milliseconds: 200));
+        if (!_phase.longPressing) {
+          return;
+        }
+
+        setState(() {
+          _phase = _Phase.longPressed;
+        });
       },
       onTapUp: (_) {
         setState(() {
@@ -92,7 +87,7 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
           padding: EdgeInsets.all(
             _phase.padding / 2,
           ),
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: LayoutBuilder(
@@ -101,8 +96,6 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
                   children: [
                     Positioned.fill(
                       child: Container(
-                        // height: constraints.maxWidth,
-                        // width: constraints.maxWidth,
                         decoration: const BoxDecoration(color: Colors.white),
                         child: FractionallySizedBox(
                           heightFactor: 0.68,

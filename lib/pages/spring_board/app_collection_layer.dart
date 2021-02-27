@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ipad_ui/components/normal_app_icon.dart';
+import 'package:ipad_ui/components/app_icon.dart';
 
 class AppCollectionLayer extends StatelessWidget {
   const AppCollectionLayer({Key? key}) : super(key: key);
