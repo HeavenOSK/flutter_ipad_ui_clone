@@ -122,9 +122,4 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
