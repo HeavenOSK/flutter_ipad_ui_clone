@@ -133,7 +133,8 @@ class _AppOpenContainerRoute<T> extends ModalRoute<T> {
                 top: offset.dy,
                 left: offset.dx,
                 child: IgnorePointer(
-                  child: Opacity(
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 50),
                     opacity: animation.value <= opacityThreshold ? 1 : 0,
                     child: ClipRRect(
                       borderRadius: borderRadius,
@@ -159,7 +160,8 @@ class _AppOpenContainerRoute<T> extends ModalRoute<T> {
               Positioned(
                 top: offset.dy,
                 left: offset.dx,
-                child: Opacity(
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 50),
                   opacity: animation.value >= opacityThreshold ? 1 : 0,
                   child: ClipRRect(
                     borderRadius: borderRadius,
