@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:ipad_ui/app_open_container/app_open_container.dart';
+import 'package:ipad_ui/apps/example_app.dart';
 import 'package:ipad_ui/components/app_icon.dart';
 
 class Dock extends StatelessWidget {
@@ -31,10 +33,39 @@ class Dock extends StatelessWidget {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    AppIcon(),
-                    AppIcon(),
-                    AppIcon(),
+                  children: [
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: openApp,
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: openApp,
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: () {
+                            openApp();
+                          },
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -48,10 +79,37 @@ class Dock extends StatelessWidget {
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    AppIcon(),
-                    AppIcon(),
-                    AppIcon(),
+                  children: [
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: openApp,
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: openApp,
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
+                    AppOpenContainer(
+                      childBuilder: (_, openApp) {
+                        return AppIcon(
+                          onTap: openApp,
+                        );
+                      },
+                      appBuilder: (c) {
+                        return const ExampleApp();
+                      },
+                    ),
                   ],
                 ),
               ),

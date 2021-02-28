@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 enum _Phase {
@@ -11,6 +12,8 @@ extension _PhaseX on _Phase {
   bool get pressing => this == _Phase.pressing;
 
   bool get longPressing => this == _Phase.longPressing;
+
+  bool get longPressed => this == _Phase.longPressed;
 
   double get padding {
     switch (this) {
@@ -44,11 +47,15 @@ class AppIcon extends StatefulWidget {
 class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
   _Phase _phase = _Phase.waiting;
 
+  static const Duration _animationDuration = Duration(milliseconds: 200);
+
+  Future<void> _sleepForAnimation() async {
+    await Future<void>.delayed(_animationDuration);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
-      onLongPress: widget.onLongPress,
       onTapDown: (_) async {
         setState(() {
           _phase = _Phase.pressing;
@@ -61,7 +68,7 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
         setState(() {
           _phase = _Phase.longPressing;
         });
-        await Future<void>.delayed(const Duration(milliseconds: 200));
+        await _sleepForAnimation();
         if (!_phase.longPressing) {
           return;
         }
@@ -69,8 +76,13 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
         setState(() {
           _phase = _Phase.longPressed;
         });
+        await _sleepForAnimation();
+        widget.onLongPress?.call();
       },
       onTapUp: (_) {
+        if (_phase.pressing) {
+          widget.onTap?.call();
+        }
         setState(() {
           _phase = _Phase.waiting;
         });
@@ -87,7 +99,7 @@ class _AppIconState extends State<AppIcon> with SingleTickerProviderStateMixin {
           padding: EdgeInsets.all(
             _phase.padding / 2,
           ),
-          duration: const Duration(milliseconds: 200),
+          duration: _animationDuration,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: LayoutBuilder(

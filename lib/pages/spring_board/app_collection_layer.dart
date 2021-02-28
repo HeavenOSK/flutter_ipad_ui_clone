@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ipad_ui/app_open_container/app_open_container.dart';
+import 'package:ipad_ui/apps/example_app.dart';
 import 'package:ipad_ui/components/app_icon.dart';
 
 class AppCollectionLayer extends StatelessWidget {
@@ -16,8 +18,19 @@ class AppCollectionLayer extends StatelessWidget {
         children: [
           for (int i = 0; i < 6; i++)
             Column(
-              children: const [
-                AppIcon(),
+              children: [
+                AppOpenContainer(
+                  childBuilder: (_, openApp) {
+                    return AppIcon(
+                      onTap: () {
+                        openApp();
+                      },
+                    );
+                  },
+                  appBuilder: (c) {
+                    return const ExampleApp();
+                  },
+                ),
                 SizedBox(height: 4),
                 Text(
                   'example',
