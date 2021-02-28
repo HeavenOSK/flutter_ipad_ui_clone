@@ -20,6 +20,7 @@ class AppCollectionLayer extends StatelessWidget {
             Column(
               children: [
                 AppOpenContainer(
+                  iconSize: AppIcon.areaSize,
                   childBuilder: (_, openApp) {
                     return AppIcon(
                       onTap: () {
@@ -31,8 +32,8 @@ class AppCollectionLayer extends StatelessWidget {
                     return const ExampleApp();
                   },
                 ),
-                SizedBox(height: 4),
-                Text(
+                const SizedBox(height: 4),
+                const Text(
                   'example',
                   style: TextStyle(
                     color: Colors.white,

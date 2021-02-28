@@ -35,6 +35,7 @@ class Dock extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: openApp,
@@ -45,6 +46,7 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: openApp,
@@ -55,6 +57,7 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: () {
@@ -81,6 +84,7 @@ class Dock extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: openApp,
@@ -91,6 +95,7 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: openApp,
@@ -101,6 +106,7 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
+                      iconSize: AppIcon.areaSize,
                       childBuilder: (_, openApp) {
                         return AppIcon(
                           onTap: openApp,
