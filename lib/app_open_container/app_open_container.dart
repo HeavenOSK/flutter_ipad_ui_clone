@@ -78,6 +78,9 @@ class _AppOpenContainerRoute<T> extends ModalRoute<T> {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 300);
 
+  @override
+  Duration get reverseTransitionDuration => const Duration(milliseconds: 250);
+
   RenderBox? _navigator(BuildContext context) {
     return Navigator.of(context).context.findRenderObject() as RenderBox?;
   }
@@ -91,6 +94,7 @@ class _AppOpenContainerRoute<T> extends ModalRoute<T> {
   }
 
   static double get opacityThreshold => 0.3;
+
   @override
   Widget buildPage(
     BuildContext context,
@@ -120,13 +124,24 @@ class _AppOpenContainerRoute<T> extends ModalRoute<T> {
       child: AnimatedBuilder(
         animation: animation,
         builder: (context, _) {
+          Curve _preferredCurve() {
+            switch (animation.status) {
+              case AnimationStatus.dismissed:
+              case AnimationStatus.completed:
+              case AnimationStatus.forward:
+                return Curves.easeOut;
+              case AnimationStatus.reverse:
+                return ElasticInCurve(0.95);
+            }
+          }
+
           final curve = CurvedAnimation(
             parent: animation,
-            curve: Curves.easeOut,
+            curve: _preferredCurve(),
           );
           final offset = offsetTween.transform(curve.value);
-          final size = sizeTween.transform(curve.value);
-          final borderRadius = borderRadiusTween.transform(curve.value);
+          final size = sizeTween.transform(curve.value.abs());
+          final borderRadius = borderRadiusTween.transform(curve.value.abs());
           return Stack(
             children: [
               Positioned(
