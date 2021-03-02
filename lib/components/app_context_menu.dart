@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ipad_ui/components/animated_app_icon.dart';
 
 enum ContextMenuAction {
   edit,
@@ -130,4 +131,81 @@ class _AppContextMenuState extends State<AppContextMenu>
       ),
     );
   }
+}
+
+class _AppContextMenuRoute<T> extends RawDialogRoute<T> {
+  _AppContextMenuRoute({
+    required BuildContext context,
+    required WidgetBuilder builder,
+    required GlobalKey key,
+    bool barrierDismissible = true,
+    String? barrierLabel,
+    RouteSettings? settings,
+  })  : assert(barrierDismissible != null),
+        super(
+          pageBuilder: (
+            BuildContext buildContext,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) {
+            RenderBox? _navigator(BuildContext context) {
+              return Navigator.of(context).context.findRenderObject()
+                  as RenderBox?;
+            }
+
+            Rect _iconRect(GlobalKey key, RenderBox rootRenderBox) {
+              final render =
+                  key.currentContext!.findRenderObject() as RenderBox?;
+              return MatrixUtils.transformRect(
+                render!.getTransformTo(rootRenderBox),
+                Offset.zero & render.size,
+              );
+            }
+
+            final navigator = _navigator(context);
+            final appIconRect = _iconRect(
+              key,
+              navigator!,
+            );
+
+            return AnimatedBuilder(
+              animation: animation,
+              builder: (context, _) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    top: appIconRect.topLeft.dy,
+                    left: appIconRect.topLeft.dx,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: AnimatedAppIcon.areaSize,
+                        width: AnimatedAppIcon.areaSize,
+                        child: Padding(
+                          padding: EdgeInsets.all(4 - 4 * animation.value),
+                          child: FittedBox(
+                            child: Builder(
+                              builder: builder,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      AppContextMenu(
+                        onSelect: (action) {},
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+          barrierDismissible: barrierDismissible,
+          barrierColor: Colors.black.withOpacity(0.1),
+          barrierLabel: barrierLabel ??
+              MaterialLocalizations.of(context).modalBarrierDismissLabel,
+          transitionDuration: const Duration(milliseconds: 180),
+          settings: settings,
+        );
 }
