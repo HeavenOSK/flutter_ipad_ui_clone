@@ -14,26 +14,16 @@ class AppIcon extends StatelessWidget {
       width: size,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Stack(
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    decoration: const BoxDecoration(color: Colors.white),
-                    child: FractionallySizedBox(
-                      heightFactor: 0.68,
-                      widthFactor: 0.68,
-                      child: Image.asset(
-                        'images/ic_launcher.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
+        child: Container(
+          decoration: const BoxDecoration(color: Colors.white),
+          child: FractionallySizedBox(
+            heightFactor: 0.68,
+            widthFactor: 0.68,
+            child: Image.asset(
+              'images/ic_launcher.png',
+              fit: BoxFit.contain,
+            ),
+          ),
         ),
       ),
     );
