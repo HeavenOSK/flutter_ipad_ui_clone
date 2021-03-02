@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:ipad_ui/app_open_container/app_open_container.dart';
 import 'package:ipad_ui/apps/example_app.dart';
-import 'package:ipad_ui/components/app_icon.dart';
+import 'package:ipad_ui/components/animated_app_icon.dart';
 
 class Dock extends StatelessWidget {
   const Dock({Key? key}) : super(key: key);
@@ -35,9 +35,9 @@ class Dock extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: openApp,
                         );
                       },
@@ -46,9 +46,9 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: openApp,
                         );
                       },
@@ -57,9 +57,9 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: () {
                             openApp();
                           },
@@ -84,9 +84,9 @@ class Dock extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: openApp,
                         );
                       },
@@ -95,9 +95,9 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: openApp,
                         );
                       },
@@ -106,9 +106,9 @@ class Dock extends StatelessWidget {
                       },
                     ),
                     AppOpenContainer(
-                      iconSize: AppIcon.areaSize,
+                      iconSize: AnimatedAppIcon.areaSize,
                       childBuilder: (_, openApp) {
-                        return AppIcon(
+                        return AnimatedAppIcon(
                           onTap: openApp,
                         );
                       },

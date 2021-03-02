@@ -36,13 +36,11 @@ class _AppContextMenuState extends State<AppContextMenu>
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      setState(() {});
-    });
-    Future.delayed(
-      const Duration(milliseconds: 80),
-      _controller.forward,
-    );
+    _controller
+      ..addListener(() {
+        setState(() {});
+      })
+      ..forward();
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ipad_ui/app_open_container/app_open_container.dart';
 import 'package:ipad_ui/apps/example_app.dart';
-import 'package:ipad_ui/components/app_icon.dart';
+import 'package:ipad_ui/components/animated_app_icon.dart';
 
 class AppCollectionLayer extends StatelessWidget {
   const AppCollectionLayer({Key? key}) : super(key: key);
@@ -20,9 +20,9 @@ class AppCollectionLayer extends StatelessWidget {
             Column(
               children: [
                 AppOpenContainer(
-                  iconSize: AppIcon.areaSize,
+                  iconSize: AnimatedAppIcon.areaSize,
                   childBuilder: (_, openApp) {
-                    return AppIcon(
+                    return AnimatedAppIcon(
                       onTap: () {
                         openApp();
                       },
